@@ -7,6 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const defaultCase = {
   id: "#LX-1042",
@@ -41,6 +42,7 @@ function Brief() {
   const location = useLocation();
 
   const caseData = location.state?.caseData || defaultCase;
+  const [reviewStatus, setReviewStatus] = useState("READY FOR HUMAN REVIEW");
 
   return (
     <main className="brief-page">
@@ -67,7 +69,7 @@ function Brief() {
 
               <span className="brief-ready">
                 <span />
-                READY FOR REVIEW
+                {reviewStatus}
               </span>
             </div>
 
@@ -220,6 +222,42 @@ function Brief() {
           </div>
         </section>
 
+        <section className="human-review-panel">
+          <div className="human-review-heading">
+            <div>
+              <span>HUMAN REVIEW</span>
+              <h2>Reviewer decision point</h2>
+            </div>
+            <Gavel size={19} />
+          </div>
+
+          <p>
+            This AI-assisted brief is ready for a human reviewer. These demo
+            actions update the local display only and do not contact a backend.
+          </p>
+
+          <div className="human-review-actions">
+            <button
+              className="review-action-primary"
+              onClick={() => setReviewStatus("ACCEPTED FOR REVIEW")}
+            >
+              ACCEPT FOR REVIEW
+            </button>
+            <button
+              className="review-action-secondary"
+              onClick={() => setReviewStatus("MORE INFORMATION REQUESTED")}
+            >
+              REQUEST MORE INFORMATION
+            </button>
+            <button
+              className="review-action-secondary"
+              onClick={() => setReviewStatus("MARKED AS REVIEWED")}
+            >
+              MARK AS REVIEWED
+            </button>
+          </div>
+        </section>
+
         {/* AGENT TRACE */}
 
         <section className="brief-panel brief-agent-trace">
@@ -254,7 +292,7 @@ function Brief() {
           <ShieldAlert size={15} />
 
           <div>
-            <strong>Human review remains essential.</strong>
+            <strong>AI-assisted workflow. Human legal review is required.</strong>
 
             <span>
               LexBridge organizes information for legal-aid workflows. This
