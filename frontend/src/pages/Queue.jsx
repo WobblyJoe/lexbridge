@@ -55,11 +55,11 @@ function Queue() {
               HUMAN REVIEW QUEUE
             </div>
 
-            <h1>Priority queue.</h1>
+            <h1>Human review queue.</h1>
 
             <p>
-              Cases are organized by triage priority so human reviewers can
-              identify time-sensitive matters.
+              Incoming cases are organized by triage priority so human
+              reviewers can identify time-sensitive matters.
             </p>
           </div>
 
@@ -101,6 +101,16 @@ function Queue() {
             ))}
           </div>
         </section>
+
+        <div className="review-workflow-strip" aria-label="Human review workflow">
+          <span className="is-current">INCOMING CASE</span>
+          <i />
+          <span className="is-current">PRIORITY QUEUE</span>
+          <i />
+          <span>CASE BRIEF</span>
+          <i />
+          <span>HUMAN REVIEW</span>
+        </div>
 
         {/* QUEUE */}
 
